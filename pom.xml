@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.wru</groupId>
-    <artifactId>onthi</artifactId>
-    <version>0.0.1</version>
+    <artifactId>ROOT</artifactId>
+    <version></version>
     <packaging>war</packaging>
     <name>onthi-online</name>
     <description>Project on thi online</description>
