@@ -116,7 +116,7 @@
                                     <tbody th:if="${pageInfo.content != null}">
                                     <tr th:each=" row,iterStat: ${pageInfo.content}">
                                         <td th:text="${iterStat.count}"></td>
-                                        <td><img id="img-lesson" th:src="@{/image/lesson/{image}(image=${row.image})}"></td>
+                                        <td><img id="img-lesson" th:src="${row.image}"></td>
                                         <td th:text="${#strings.substring(row.lessonName,0,15)+'...'}"></td>
                                         <td th:text="${row.views}"></td>
                                         <td th:text="${row.subject.name}"></td>

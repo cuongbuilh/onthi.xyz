@@ -103,7 +103,7 @@
                                     <tbody th:if="${pageInfo.content != null}">
                                     <tr th:each=" row,iterStat: ${pageInfo.content}">
                                         <td th:text="${iterStat.count}"></td>
-                                        <td><img id="img-news" th:src="@{/image/news/{image}(image=${row.image})}"></td>
+                                        <td><img id="img-news" th:src="${row.image}"></td>
                                         <td th:text="${#strings.substring(row.title,0,20)+'...'}"></td>
                                         <td th:text="${row.categoryNews.categoryName}"></td>
                                         <td th:text="${#dates.format(row.insertDate, 'dd/MM/yyyy')}"></td>

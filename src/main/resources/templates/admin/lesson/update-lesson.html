@@ -38,7 +38,7 @@
                                 <input type="text" name="lessonId" th:value="${lesson.id}" hidden>
                                 <input type="file" name="image" id="fileImage" style="overflow: hidden"/>
                                 <div class="col-md-12 col-sm-12 mt-3">
-                                    <img id="imgPreview" style="width: 150px;height: 150px" th:src="@{/image/lesson/{image}(image=${lesson.image})}">
+                                    <img id="imgPreview" style="width: 150px;height: 150px" th:src="${lesson.image}">
                                 </div>
                                 <input type="submit" value="Cập nhật ảnh" class="btn btn-success mt-3">
                             </form>

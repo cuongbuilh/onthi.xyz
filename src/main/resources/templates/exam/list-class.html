@@ -24,7 +24,7 @@
                         <div class="list-subject">
                             <a th:href="@{/kiemtra/class/list-exam(classId=${item.id})}" th:each="item:${listClassEx}">
                                 <div class="subject-item">
-                                    <img th:src="@{/image/classroom/{image}(image=${item.image})}">
+                                    <img th:src="${item.image}">
                                 </div>
                             </a>
                         </div>
@@ -36,7 +36,7 @@
                             <a th:each="item:${listExam}" th:href="@{/kiemtra/info(examId=${item.id})}">
                                 <div class="test-listItem">
                                     <div class="img">
-                                        <img th:src="@{/image/subject/{image}(image=${item.getExam_subject().image})}" alt="">
+                                        <img th:src="${item.getExam_subject().image}" alt="">
                                     </div>
                                     <div class="content">
                                         <h6 class="title">Mã đề thi: <span th:text="${item.codeExam}"></span> <br>

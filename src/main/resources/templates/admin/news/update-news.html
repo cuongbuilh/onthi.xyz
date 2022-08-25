@@ -36,7 +36,7 @@
                                 <input type="text" name="newsId" th:value="${news.id}" hidden>
                                 <input type="file" name="image" id="fileImage" style="overflow: hidden"/>
                                 <div class="col-md-12 col-sm-12 mt-3">
-                                    <img id="imgPreview" style="width: 150px;height: 150px" th:src="@{/image/news/{image}(image=${news.image})}">
+                                    <img id="imgPreview" style="width: 150px;height: 150px" th:src="${news.image}">
                                 </div>
                                 <input type="submit" id="btnUpdateImageNews" value="Cập nhật ảnh" class="btn btn-success mt-3">
                             </form>
