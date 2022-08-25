@@ -19,7 +19,7 @@
                             <h4 class="mb-5">Update hình ảnh</h4>
                             <input type="file" name="image" id="fileImage" style="overflow: hidden"/>
                             <div class="col-md-12 col-sm-12 mt-3">
-                                <img id="imgPreview" style="width: 63%;" th:src="@{/image/user/{image}(image=${us.image})}">
+                                <img id="imgPreview" style="width: 63%;" th:src="${us.image}">
                             </div>
                             <input type="submit" value="Cập nhật ảnh" id="btnUpdateImage" class="btn btn-success mt-3">
                         </form>

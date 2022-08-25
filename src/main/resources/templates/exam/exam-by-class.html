@@ -62,7 +62,7 @@
                             <a th:each="item:${lesson}" th:href="@{/noidungbaihoc/(lessonId=${item.id})}">
                                 <div class="test-listItem">
                                     <div class="img">
-                                        <img th:src="@{/image/lesson/{image}(image=${item.image})}" alt="">
+                                        <img th:src="${item.image}" alt="">
                                     </div>
                                     <div class="content">
                                         <h6 class="title">Môn học: <span th:text="${item.subject.name}"></span><br>

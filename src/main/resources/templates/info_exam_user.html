@@ -17,7 +17,7 @@
         <div class="row col-md-12  d-flex justify-content-center">
             <div class="col-md-2 col-6 p-2" th:each="item: ${pageInfo}">
                 <div class="card">
-                    <img class="card-img-top" th:src="@{/image/subject/{image}(image=${item.exam_result.exam_subject.image})}" alt="Card image cap">
+                    <img class="card-img-top" th:src="${item.exam_result.exam_subject.image}" alt="Card image cap">
                     <div class="card-body">
                         <h3 class="card-title">Mã Đề: <span th:text="${item.exam_result.codeExam}"></span></h3>
                         <h3 class="card-title">Số điểm: <span th:text="${item.score}"></span></h3>

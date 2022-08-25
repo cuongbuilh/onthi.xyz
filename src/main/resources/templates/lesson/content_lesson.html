@@ -103,7 +103,7 @@
                             <a th:each="item:${exam}" th:href="@{/kiemtra/info(examId=${item.id})}">
                                 <div class="test-listItem">
                                     <div class="img">
-                                        <img th:src="@{/image/subject/{image}(image=${item.exam_subject.image})}" alt="">
+                                        <img th:src="${item.exam_subject.image}" alt="">
                                     </div>
                                     <div class="content">
                                         <h6 class="title">Mã đề thi: <span th:text="${item.codeExam}"></span> <br>

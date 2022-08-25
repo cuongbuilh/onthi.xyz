@@ -98,7 +98,7 @@
                             <div class="item-image">
                                 <a th:href="@{/tintuc(newsId=${item.id})}" class="td-image-wrap">
                                     <div class="entry-thumb">
-                                        <img th:src="@{/image/news/{image}(image=${item.image})}">
+                                        <img th:src="${item.image}">
                                     </div>
                                 </a>
                             </div>
@@ -126,7 +126,7 @@
                             <div class="item-image">
                                 <a th:href="@{/tintuc(newsId=${item.id})}" class="td-image-wrap">
                                     <div class="entry-thumb">
-                                        <img th:src="@{/image/news/{image}(image=${item.image})}">
+                                        <img th:src="${item.image}">
                                     </div>
                                 </a>
                             </div>
