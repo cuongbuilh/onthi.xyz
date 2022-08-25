@@ -1,0 +1,91 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<div th:fragment="content" th:remove="tag">
+<div class="col-md-3 left_col">
+    <div class="left_col scroll-view">
+        <div class="navbar nav_title">
+            <a th:href="@{/admin/home}" class="site_title"><i class="fa fa-graduation-cap"></i> <span>Luyenthi365</span></a>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <!-- menu profile quick info -->
+        <div class="profile clearfix">
+            <div class="profile_pic">
+                <img th:src="@{/image/user/{image}(image=${image})}" class="img-circle profile_img">
+            </div>
+            <div class="profile_info">
+                <span>Welcome,</span>
+                <h2 th:text="${username}"></h2>
+            </div>
+        </div>
+        <!-- /menu profile quick info -->
+
+        <br />
+
+        <!-- sidebar menu -->
+        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+            <div class="menu_section">
+                <h3>General</h3>
+                <ul class="nav side-menu">
+                    <li id="homeManager" sec:authorize="hasAnyAuthority('ADMIN')">
+                        <a  th:href="@{/admin/home}"><i class="fa fa-home" ></i> Home</a>
+                    </li>
+
+                    <li id="userManager" sec:authorize="hasAnyAuthority('ADMIN')">
+                        <a th:href="@{/admin/user/list-user}"><i class="fa fa-users" ></i> Quản lý user</a>
+                    </li>
+                    <li id="classManager" sec:authorize="hasAnyAuthority('ADMIN')">
+                        <a th:href="@{/class/list-class}"><i class="fa fa-university"></i> Quản lý lớp học</a>
+                    </li>
+                    <li id="subjectManager" sec:authorize="hasAnyAuthority('ADMIN')">
+                        <a th:href="@{/subject/list-subject}"><i class="fa fa-file-text-o"></i> Quản lý môn học</a>
+                    </li>
+                    <li id="lessonManager">
+                        <a th:href="@{/lesson/list-lesson}"><i class="fa fa-file-text"></i> Quản lý độ khó</a>
+                    </li>
+                    <li id="examManager">
+                        <a th:href="@{/exam/list-exam}"><i class="fa fa-file-pdf-o"></i> Quản lý đề thi</a>
+                    </li>
+                    <li id="questionManager">
+                        <a th:href="@{/question/search-question}"><i class="fa fa-question-circle-o"></i> Quản lý câu hỏi</a>
+                    </li>
+                    <li id="newsManager">
+                        <a><i class="fa fa-newspaper-o"></i> Quản lý tin tức <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li ><a th:href="@{/news/list-news}"><i class="fa fa-newspaper-o"></i> Quản lý tin tức</a></li>
+                            <li id="newsCategoryManager"><a th:href="@{/news/list-category}"><i class="fa fa-tumblr"></i> Quản lý thể loại</a></li>
+                        </ul>
+                    </li>
+                    <li id="resultManager">
+                        <a th:href="@{/result/list-result}"><i class="fa fa-wpforms"></i> Quản lý kết quả thi</a>
+                    </li>
+                    <li id="commentManager">
+                        <a><i class="fa fa-comments"></i> Quản lý comment <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li ><a th:href="@{/comment-manager/list-comment-lesson}"><i class="fa fa-file-word-o"></i> Comment bài học</a></li>
+                            <li ><a th:href="@{/comment-manager/list-comment-news}"><i class="fa fa-newspaper-o"></i> Comment tin tức </a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /sidebar menu -->
+
+        <div class="sidebar-footer hidden-small">
+            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+            </a>
+            <a data-toggle="tooltip" data-placement="top" title="Logout" th:href="@{/logout}">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+</div>
+</div>

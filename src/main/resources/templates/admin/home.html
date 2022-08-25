@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Admin Home</title>
+    <div th:replace="admin/init_admin :: header"></div>
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="admin/sidebar :: content"></div>
+        <div th:replace="admin/header :: content"></div>
+        <div class="right_col" role="main">
+            <div class="row border-bottom mb-3 ">
+                <div class="col-md-12 d-flex justify-content-center mt-3">
+                    <h4>Chào mừng bạn đến với trang quản trị của hệ thống.</h4>
+                </div>
+            </div>
+
+            <div class="">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                            <div class="tile-stats">
+                                <div class="icon"><i class="fa fa-users"></i>
+                                </div>
+                                <div class="count" th:text="${user}"></div>
+                                <h3>User</h3>
+                                <p>Số user đã đăng kí trên hệ thống</p>
+                            </div>
+                        </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                            <div class="tile-stats">
+                                <div class="icon">
+                                    <i class="fa fa-file-word-o"></i>
+                                </div>
+                                <div class="count"  th:text="${lesson}"></div>
+                                <h3>Độ khó</h3>
+                                <p>Số bài học hiện có của hệ thống</p>
+                            </div>
+                        </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                            <div class="tile-stats">
+                                <div class="icon"><i class="fa fa-newspaper-o"></i>
+                                </div>
+                                <div class="count" th:text="${news}"></div>
+
+                                <h3>Tin tức</h3>
+                                <p>Số tin tức đang có của hệ thống</p>
+                            </div>
+                        </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                            <div class="tile-stats">
+                                <div class="icon"><i class="fa fa-check-square-o"></i>
+                                </div>
+                                <div class="count"  th:text="${exam}"></div>
+
+                                <h3>Đề thi</h3>
+                                <p>Số đề thi đang có của hệ thống</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                            <div class="tile-stats">
+                                <div class="icon"><i class="fa fa-question-circle-o"></i>
+                                </div>
+                                <div class="count"  th:text="${question}"></div>
+                                <h3>Câu hỏi</h3>
+                                <p>Số câu hỏi đang có trên hệ thống</p>
+                            </div>
+                        </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6  ">
+                            <div class="tile-stats">
+                                <div class="icon">
+                                    <i class="fa fa-file-text-o"></i>
+                                </div>
+                                <div class="count" th:text="${subject}" ></div>
+                                <h3>Môn học</h3>
+                                <p>Số môn học hiện có của hệ thống</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+    <div th:replace="admin/footer :: content"></div>
+</div>
+<div th:replace="admin/init_admin :: script"></div>
+<script>
+    $(document).ready(function () {
+        $('#homeManager').addClass("active");
+    });
+</script>
+</body>
+</html>

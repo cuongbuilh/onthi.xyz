@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <title>Home</title>
+    <div th:replace="fragments/init_lib :: header"></div>
+    <script th:src="@{https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js}"></script>
+</head>
+
+<body>
+<div th:replace="fragments/header :: content"></div>
+<div th:replace="fragments/menu :: content"></div>
+
+<main class="home">
+    <div class="container">
+        <!-- banner -->
+        <div class="banner">
+            <div class="row">
+                <div class="col-md-7 col-12">
+                    <div class="banner-left">
+                        <div class="banner-slider">
+                            <div class="banner-sliderItem">
+                                <a th:href="@{/kiemtra/list-class}">
+                                    <img th:src="@{/image/slider.png}" alt="">
+                                </a>
+                            </div>
+                            <div class="banner-sliderItem">
+                                <a th:href="@{/kiemtra/list-class}">
+                                    <img th:src="@{/image/slider1.png}" alt="">
+                                </a>
+                            </div>
+                            <div class="banner-sliderItem">
+                                <a th:href="@{/kiemtra/list-class}">
+                                    <img th:src="@{/image/slider2.png}" alt="">
+                                </a>
+                            </div>
+                            <div class="banner-sliderItem">
+                                <a th:href="@{/kiemtra/list-class}">
+                                    <img th:src="@{/image/slider3.png}" alt="">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-12">
+                    <div class="study-right">
+                        <div class="study-rightTitle">
+                            <span><i class="fa fa-file-text" ></i> Danh sách bài kiểm tra mới</span>
+                        </div>
+                        <div class="study-listChemistry">
+                            <a th:href="@{/kiemtra/info(examId=${item.id})}" th:each="item:${listExam}">
+                                <div class="study-chemistryItem" >
+                                    <div class="img">
+                                        <img th:src="@{/image/subject/{image}(image=${item.getExam_subject().image})}" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <h3 class="title">
+                                            Môn học: <span style="color: #65d258" th:text="${item.getExam_subject().name}"></span>
+                                            &nbsp;&nbsp; <i class="fa fa-clock-o" ></i> Thời gian: <span th:text="${item.timeOut} +' phút'"> </span>
+                                        </h3>
+                                        <span>Mã đề :<span th:text="${item.codeExam}"></span> - <span class="description" th:text="${item.title}"></span></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <!-- test -->
+        <section class="test">
+            <div class="section-header">
+                <h2 class="section-title">Kiểm tra</h2>
+                <div class="section-img">
+                    <img th:src="@{/image/test.png}" alt="">
+                </div>
+            </div>
+            <div class="test-slider">
+                <div class="test-sliderItem" th:each="item:${listSubject}">
+                    <div class="subject" >
+                        <a th:href="@{/lophoc/list-class(subjectId=${item.id})}">
+                            <img th:src="@{/image/subject/{image}(image=${item.image})}" >
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- news -->
+        <section class="news">
+            <div class="section-header">
+                <h2 class="section-title">Tin tức</h2>
+                <div class="section-img">
+                    <img th:src="@{/image/newspaper.png}" alt="">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-12">
+                    <div class="news-left">
+                        <div class="news-leftTitle">
+                            <span><i class="fa fa-book" aria-hidden="true"></i> Danh sách đề thi mới</span>
+                        </div>
+                        <div class="news-list">
+                            <a th:href="@{/noidungbaihoc(lessonId=${item.id})}" th:each="item:${lessonList}">
+                                <div class="news-listItem">
+                                    <div class="img">
+                                        <img th:src="@{/image/lesson/{image}(image=${item.image})}" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <h3 class="title">
+                                            Môn học: <span th:text="${item.getSubject().name}"></span>
+                                        </h3>
+                                        <span class="description">
+                                           Nội dung : <span th:text="${item.lessonName}"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="news-left">
+                        <div class="news-leftTitle">
+                            <span><i class="fa fa-book" aria-hidden="true"></i> Danh sách điểm cao</span>
+                        </div>
+                        <div class="news-list">
+                            <a th:each="item:${userScore}">
+                                <div class="news-listItem">
+                                    <div class="img">
+                                        <img th:src="@{/image/user/{image}(image=${item.userResult.image})}" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <h5 class="title" style="font-size: 100%">
+                                            Môn học: <span th:text="${item.exam_result.exam_subject.name}"></span> --
+                                            <span th:text="${item.exam_result.exam_classroom.classname}"></span>
+                                        </h5>
+                                        <span class="description">
+                                           Thành viên : <span th:text="${item.userResult.fullname}"></span><br>Số điểm: <span th:text="${item.score}"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="news-right">
+                        <div class="news-rightTitle">
+                            <span><i class="fa fa-newspaper-o" ></i> Danh sách câu hỏi sai nhiều</span>
+                        </div>
+                        <div class="news-list">
+                            <a th:href="@{/tintuc(newsId=${item.id})}" th:each="item:${listNews}">
+                                <div class="news-listItem">
+                                    <div class="img">
+                                        <img th:src="@{/image/news/{image}(image=${item.image})}" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <h4 class="title" th:text="${item.title}">
+                                        </h4>
+                                        <span class="description">
+                                            <i class="fa fa-angle-double-right"></i>Thời gian:<span th:text="${#dates.format(item.insertDate, 'dd/MM/yyy HH:mm')}"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- feel of student -->
+        <section class="feel">
+            <div class="section-header">
+                <h2 class="section-title">Cảm nhận của học sinh</h2>
+                <div class="section-img">
+                    <img th:src="@{/image/feelings.png}" alt="">
+                </div>
+            </div>
+            <div class="feel-slider">
+                <div class="feel-sliderItem">
+                    <div class="feel-content">
+                        <div class="avatar">
+                            <img th:src="@{/image/img-right1.png}" alt="">
+                        </div>
+                        <p>
+                            Luyenthi365 có các bài học rất hay và chi tiết, nội dung rõ ràng.
+                        </p>
+                    </div>
+                </div>
+                <div class="feel-sliderItem">
+                    <div class="feel-content">
+                        <div class="avatar">
+                            <img th:src="@{/image/img-right2.png}" alt="">
+                        </div>
+                        <p>
+                            Luyenthi365 học tập rất dễ dàng, luyện thi nhanh, ôn tập hiệu quả.
+                        </p>
+                    </div>
+                </div>
+                <div class="feel-sliderItem">
+                    <div class="feel-content">
+                        <div class="avatar">
+                            <img th:src="@{/image/img-right3.png}" alt="">
+                        </div>
+                        <p>
+                            Luyenthi365 là một nơi học tập rất hữu ích,học tập và ôn thi nhanh.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+<div th:replace="fragments/footer :: content"></div>
+<div th:replace="fragments/init_lib :: script"></div>
+</body>
+</html>

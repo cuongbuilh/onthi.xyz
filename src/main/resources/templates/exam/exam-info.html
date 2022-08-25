@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <title>Thông tin đề thi</title>
+    <div th:replace="fragments/init_lib :: header"></div>
+</head>
+
+<body>
+<div th:replace="fragments/header :: content"></div>
+<div th:replace="fragments/menu :: content"></div>
+<main class="home">
+    <div class="container exam-test">
+        <section class="main-exam container">
+            <h2>Thông tin đề thi</h2>
+            <div class="row">
+                <div class="col-md-3 "></div>
+                <div class="col-md-7">
+                    <label>Môn học:</label><span th:text="${exam.exam_subject.name}"></span><br>
+                    <label>Lớp học:</label><span th:text="${exam.exam_classroom.classname}"></span><br>
+                    <label>Mã đề thi:</label><span th:text="${exam.codeExam}"></span><br>
+                    <label>Thời gian:</label><span th:text="${exam.timeOut} +' '+ phút"></span><br>
+                    <label>Số câu hỏi:</label><span th:text="${exam.totalQuestion}  +' '+ câu"></span><br>
+                    <label>Đã thi:</label><span th:text="${exam.views} "></span><br>
+                    <label>Thời gian tạo: </label><span th:text="${#dates.format(exam.createDate, 'dd/MM/yyyy HH:mm')}"></span><br>
+                    <label>Nội dung thi:</label><span th:text="${exam.content}"></span>
+                    <div class="start-exam">
+                        <a class="btn btn-success" id="btnStart" th:href="@{/kiemtra(examId=${examId})}">Bắt đầu</a>
+                        <a href="javascript:history.back();" class="btn btn-info">Trở lại</a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1"
+         role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">Thông báo !</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"><h3>Bạn phải đăng nhập trước khi thi</h3></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i>Hủy bỏ</button>
+                    <a th:href="@{/login}" class="btn btn-success" id="btnAccept" style="color: white"><i class="fa fa-check"></i> Đồng ý</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/footer :: content"></div>
+<div th:replace="fragments/init_lib :: script"></div>
+<script type="text/javascript" th:src="@{/js/exam.js}"></script>
+<script>
+    $('#btnStart').on('click', function(event) {
+        var acc =$('#dropdownMenuButton').val();
+        if((acc== null) || (acc== undefined)){
+            event.preventDefault();
+            var href = $('#btnAccept').attr('href');
+            $('#exampleModal #btnAccept').attr('href', href);
+            $('#exampleModal').modal();
+        }else {
+            window.location=$('#btnStart').href;
+        }
+    });
+
+</script>
+</body>
+</html>

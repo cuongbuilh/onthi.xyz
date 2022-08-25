@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <style>
+        .image403{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 42%;
+        }
+        .info{
+            margin: 0px auto;
+            text-align: center;
+        }
+        .click{
+            font-size: 20px;
+            color: #005cbf;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            color: #c82333;
+        }
+        label{
+            font-size: 18px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<body>
+<img class="image403" th:src="@{/image/403-error.png}">
+<form class="info">
+<label>Truy cập thất bại.</label><br>
+<label>Bạn không có quyền truy cập vào mục này!</label><br><br>
+<a href="javascript:history.back();" class="click">Click vào đây để quay lại
+    <i class="fa fa-reply" aria-hidden="true"></i></a>
+</form>
+</body>
+</html>

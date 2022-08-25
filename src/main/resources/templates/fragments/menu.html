@@ -1,0 +1,80 @@
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<div th:fragment="content" th:remove="tag">
+    <div class="container">
+        <nav class="menu d-none d-lg-block">
+            <div class="row">
+                <div class="col-md-8 col-12">
+                    <ul class="menu-left">
+                        <li><a th:href="@{/}">Trang chủ</a></li>
+                        <li>
+                            <a href="#">Chủ đề</a>
+                            <ul>
+                                <li th:each="item:${listClass}">
+                                    <a th:href="@{'/monhoc?class_id=' +${item.id}}" th:text="${item.classname}"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a th:href="@{/kiemtra/list-class}">Thi cử</a></li>
+                        <li><a th:href="@{/tintuc/list-news}">Tạo đề</a></li>
+                        <li><a th:href="@{/contact}">Liên hệ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="menu-right">
+                        <a class=" btn-login" id="link-login" th:href="@{/login}">
+                            <i class="fa fa-user"></i> ĐĂNG NHẬP
+                        </a>
+                        <div class="dropdown" id="div-account" sec:authorize="isAuthenticated()">
+                            <a class="dropdown-toggle btn-login" id="dropdownMenuButton"
+                                    type="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-user"></i>
+                                [[${#request.userPrincipal.principal.fullname}]]
+                                <input hidden th:value="${#request.userPrincipal.principal.username}">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a sec:authorize="hasAnyAuthority('ADMIN','MANAGER')" class="dropdown-item" id="adminManager" th:href="@{/admin/home}"><i class="fa fa-cogs"></i> Quản lí</a>
+                                <a class="dropdown-item" th:href="@{/user/profile}"><i class="fa fa-user-circle-o"></i> Profile</a>
+                                <a class="dropdown-item" th:href="@{/info/exam-user}"><i class="fa fa-check-square-o"></i> Kết quả thi</a>
+                                <a class="dropdown-item" th:href="@{/logout}"><i class="fa fa-sign-out"></i> Đăng xuất</a>
+                            </div>
+                        </div>
+                        <div th:if="${param.logout}" id="msg-logout"></div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <nav class="lg-menu d-lg-none">
+            <form th:action="@{/search}" method="get">
+                <div class="searchBox">
+                    <input type="text" placeholder="Search..">
+                    <button class="btn-search"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+            <ul>
+                <button class="btn-showMenu d-lg-none">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <li><a href="#">Trang chủ</a></li>
+                <li hasSubMenu="true">
+                    <a href="#">Học tập <i class="fa fa-chevron-down"></i></a>
+                    <ul>
+                        <li th:each="item:${listClass}">
+                            <a th:href="@{'/monhoc?class_id='+ ${item.id}}" th:text="${item.classname}"></a>
+                        </li>
+                    </ul>
+                </li>
+                <li><a th:href="@{/kiemtra/list-class}">kiểm tra</a></li>
+                <li><a th:href="@{/tintuc/list-news}">Tin tức</a></li>
+                <li><a th:href="@{/contact}">Liên hệ</a></li>
+                <li hasSubMenu="true">
+                    <a href="#"><i class="fa fa-user"></i>Đăng nhập</a>
+                    <ul>
+                        <li>Đăng xuất</li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

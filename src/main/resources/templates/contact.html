@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <title>Liên hệ</title>
+    <div th:replace="fragments/init_lib :: header"></div>
+</head>
+
+<body>
+<div th:replace="fragments/header :: content"></div>
+<div th:replace="fragments/menu :: content"></div>
+<main class="home">
+    <div class="container">
+        <div class="title-contact">
+            <h1>Liên hệ</h1>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="googlemap" >
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.8134670700883!2d105.84018081539848!3d21.000113086013886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac708d2f3315%3A0x44fd256e7ec3bf9f!2zMjA3IEdp4bqjaSBQaMOzbmcsIMSQ4buTbmcgVMOibSwgSG_DoG4gS2nhur9tLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1661442633518!5m2!1svi!2s" width="530" height="450"
+                            frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+            </div>
+            <br/>
+            <div class="col-md-6">
+                <form class="form-contact" method="post" th:action="@{/contact/send}" >
+                    <div class="form-group">
+                        <label for="form-name">Họ và tên</label>
+                        <input type="text" class="form-control" id="form-name" name="fullname" >
+                        <span id="err-form-name" class="span-vld hide">Họ và tên không được để trống.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-email">Email</label>
+                        <input type="email" class="form-control" id="form-email" name="email" >
+                        <span id="err-form-email" class="span-vld hide"> Email không được để trống.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-phone">Số điện thoại</label>
+                        <input type="text" class="form-control" id="form-phone" name="phone">
+                        <span id="err-form-phone" class="span-vld hide"> Số điện thoại không được để trống.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-message">Nội dung</label>
+                        <textarea class="form-control" id="form-message" cols="20" rows="7" name="content"></textarea>
+                        <span id="err-form-message" class="span-vld hide">Nội dung liên hệ không được để trống.</span>
+                    </div>
+                    <button class="btn btn-default" type="submit" id="btnSendContact">Gửi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/footer :: content"></div>
+<div th:replace="fragments/init_lib :: script"></div>
+</body>
+</html>

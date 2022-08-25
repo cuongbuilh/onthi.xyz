@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Thêm user</title>
+    <div th:replace="admin/init_admin :: header"></div>
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="admin/sidebar :: content"></div>
+        <div th:replace="admin/header :: content"></div>
+
+        <div class="right_col" role="main">
+            <!-- top tiles -->
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3> <small>Thêm mới User</small></h3>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_title">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <br>
+                    <form class="col-md-12" th:action="@{/admin/user/add-user}" method="post" enctype="multipart/form-data">
+                        <div class="col-md-4 border-right">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <span class="font-weight-bold mt-2">Hình đại diện </span>
+                                <input type="file" name="image" id="fileImage" style="overflow: hidden"/>
+                                <div class="col-md-12 col-sm-12 mt-3">
+                                    <img id="imgPreview" style="width: 150px;height: 150px">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 border-right">
+                            <div class="p-3">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h4 class="text-right">Thông tin tài khoản</h4>
+                                </div>
+                                <div class="bg-danger" id="error"
+                                     th:if="${not #strings.isEmpty(error)}" th:text="${error}" style="color: white;padding: 10px">
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <label class="labels">Username (viết liền không dấu và kí tự thường)</label>
+                                        <input type="text" class="form-control" name="username" id="usernameUser" th:value="${us}">
+                                        <span id="vld-username" class="span-vld hide">Username không được để trống.</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="labels">Fullname</label>
+                                        <input type="text" class="form-control" name="fullname" id="fullnameUser" th:value="${full}">
+
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <label class="labels">Email</label>
+                                        <input type="text" class="form-control" name="email" id="emailUser" th:value="${emailAdd}">
+                                        <span id="vld-email" class="span-vld hide">Email không được để trống hoẵ sai định dạng.</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="labels">Password</label>
+                                        <input type="password" class="form-control" name="password" id="passwordUser">
+                                        <span id="vld-pass" class="span-vld hide">Password không được để trống.</span>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <label class="labels">Số điện thoại</label>
+                                        <input type="text" class="form-control" name="phone" id="phoneUser" th:value="${ph}" >
+                                        <span id="vld-phone" class="span-vld hide">Số điện thoại sai định dạng.</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="labels">Địa chỉ</label>
+                                        <input type="text" class="form-control" name="address" th:value="${add}" >
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <label class="labels">Giới tính</label>
+                                        <select class="col-md-12 p-2" name="gender" >
+                                            <option value="1" th:text="Nam"></option>`
+                                            <option value="0" th:text="Nữ"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="labels">Sinh nhật</label>
+                                        <input id="datepicker" class="form-control" name="birthday" />
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <label class="labels">Quyền</label>
+                                        <select class="form-control" name="role" id="roleUser">
+                                            <option value="">Tùy chọn</option>
+                                            <option value="1">Admin</option>
+                                            <option value="2">User</option>
+                                            <option value="3">Manager</option>
+                                        </select>
+                                        <span id="vld-roleUser" class="span-vld hide">Vui lòng chọn quyền cho tài khoản.</span>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button class="btn btn-success" type="submit" id="btnAddUser">Thêm User</button>
+                                    <a class="btn btn-danger" th:href="@{/admin/user/list-user}">Hủy bỏ</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- page content -->
+    </div>
+</div>
+<div th:replace="admin/footer :: content"></div>
+</div>
+<div th:replace="admin/init_admin :: script"></div>
+<script>
+    $(document).ready(function () {
+        $('#userManager').addClass("active");
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            uiLibrary: 'bootstrap4',
+            format: 'dd-mm-yyyy'
+        });
+    });
+
+</script>
+</body>
+</html>

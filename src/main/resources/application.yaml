@@ -1,0 +1,55 @@
+server:
+  port: 8088
+
+folder:
+  upload: /home/buicuong/upload/
+
+spring:
+  thymeleaf:
+    enabled: true
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+  devtools:
+    restart:
+      enabled: true
+  datasource:
+    url: jdbc:mariadb://cuongbuilh.xyz:3306/database_onthi?serverTimezone=Asia/Ho_Chi_Minh&useUnicode=yes&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+    username: root
+    password: buicuong
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: nukuojcketnguoj@gmail.com
+    password: hangbaby
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 42787742713-gh8g9c3l3a2m2rq8t6fl5bob08gskh18.apps.googleusercontent.com
+            client-secret: u8Lh0NzMs3fo6NJnlzxueZSc
+            scope:
+              - email
+              - profile
+          facebook:
+            clientId: 1483726728500199
+            clientSecret: ec06fe1ba380421f5eeb45a55f73dbc2
+            scope:
+              - email
+              - public_profile
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB

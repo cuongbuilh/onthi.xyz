@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
+<head>
+    <title>Môn học</title>
+    <div th:replace="fragments/init_lib :: header"></div>
+</head>
+<body>
+<div th:replace="fragments/header :: content"></div>
+<div th:replace="fragments/menu :: content"></div>
+<main class="class">
+    <div class="container">
+        <!-- banner -->
+        <div class="banner class-banner">
+            <h2 class="title" th:text="${className}"></h2>
+        </div>
+        <!-- class content-->
+        <section class="class-content">
+            <div class="row">
+                <div class="col-md-8 col-12">
+                    <div class="class-left">
+                        <!-- list-subject -->
+                        <div class="class-sectionTitle">
+                            <span>Danh sách môn học</span>
+                        </div>
+                        <div class="list-subject">
+                            <a th:href="@{/baihoc(class_id=${classId},subject_id=${item.id})}" th:each="item:${listSubject}">
+                                <div class="subject-item">
+                                    <img th:src="@{'/image/subject/'+${item.image}}">
+                                </div>
+                            </a>
+                        </div>
+
+                        <!-- test-list -->
+                        <div class="class-sectionTitle">
+                            <span>Danh sách bài học</span>
+                        </div>
+                        <div class="test-list" >
+                            <a th:each="item:${lesson}" th:href="@{/noidungbaihoc/(lessonId=${item.id})}">
+                                <div class="test-listItem">
+                                    <div class="img">
+                                        <img th:src="@{/image/lesson/{image}(image=${item.image})}" alt="">
+                                    </div>
+                                    <div class="content">
+                                        <h6 class="title">Môn học: <span th:text="${item.subject.name}"></span><br>
+                                            <span th:text="${item.classroom.classname}" ></span><br>
+                                            Tên bài học: <span th:text="${item.lessonName}"></span> </h6>
+                                        <p class="description" th:text="${item.description}">
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <div th:replace="fragments/sidebar :: content"></div>
+            </div>
+        </section>
+    </div>
+</main>
+<div th:replace="fragments/footer :: content"></div>
+<div th:replace="fragments/init_lib :: script"></div>
+</body>
+
+</html>

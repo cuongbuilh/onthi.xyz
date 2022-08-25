@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Danh sách môn học</title>
+    <div th:replace="admin/init_admin :: header"></div>
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="admin/sidebar :: content"></div>
+        <div th:replace="admin/header :: content"></div>
+
+        <div class="right_col" role="main">
+            <!-- top tiles -->
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3> <small>Danh sách môn học</small></h3>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_title">
+                            <h5>Tùy chọn tìm kiếm</h5>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div>
+                            <form th:action="@{/subject/list-subject}" method="get">
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-12">
+                                        <label>Tên môn học</label>
+                                        <div>
+                                            <input class="form-control" name="subject" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12 ">
+                                        <label>&nbsp;</label>
+                                        <div>
+                                            <button type="submit" class="btn btn-success">Tìm kiếm</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                        <label>&nbsp;</label>
+                                        <div>
+                                            <a th:href="@{/subject/add-subject}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="bg-success col-md-12" id="success"
+                             th:if="${not #strings.isEmpty(success)}" th:text="${success}" style="color: white;padding: 10px">
+                        </div>
+                        <div class="bg-danger col-md-12" id="error"
+                             th:if="${not #strings.isEmpty(error)}" th:text="${error}" style="color: white;padding: 10px">
+                        </div>
+                        <div class="tile-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="sampleTable">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Mã môn học</th>
+                                        <th>Tên môn học</th>
+                                        <th>Trạng thái</th>
+                                        <th>Tùy chọn</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:if="${pageInfo.content != null}">
+                                    <tr th:each=" row,iterStat: ${pageInfo.content}">
+                                        <td th:text="${iterStat.count}"></td>
+                                        <td><img style="height: 50px;width: 50px" id="img" th:src="@{/image/subject/{image}(image=${row.image})}"></td>
+                                        <td th:text="${row.code}"></td>
+                                        <td th:text="${row.name}"></td>
+                                        <td th:if="${row.status==1}">
+                                            <a th:href="@{/subject/update-status(id=${row.id},status=${row.status})}" id="confirmDisable" class="btn btn-success" title="Active">Active</a>
+                                        </td>
+                                        <td th:if="${row.status==0}">
+                                            <a th:href="@{/subject/update-status(id=${row.id},status=${row.status})}" id="confirmActive" class="btn btn-secondary" title="Disable">Disable</a>
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn btn-success dropdown-toggle"
+                                                        type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="fa fa-cog"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" th:href="@{/subject/update/{id}(id=${row.id})}"><i class="fa fa-edit" ></i> Cập nhật</a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item" th:href="@{/subject/delete/{id}/{status}(id=${row.id},status=${row.status})}" id="confirmDelete"> <i class="fa fa-trash-o"></i> Xóa</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div th:replace="admin/pagging::content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+        <!-- page content -->
+    </div>
+</div>
+<div th:replace="admin/modal_confirm::content"></div>
+<div th:replace="admin/modal_active::content"></div>
+<div th:replace="admin/modal_disable::content"></div>
+<div th:replace="admin/footer :: content"></div>
+</div>
+<div th:replace="admin/init_admin :: script"></div>
+<script>
+    $("#subjectManager").addClass("active");
+</script>
+</body>
+</html>

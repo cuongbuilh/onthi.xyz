@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <style>
+        body{
+            background-color: #fafafa;
+        }
+        .image403{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        .info{
+            margin: 0px auto;
+            text-align: center;
+        }
+        .click{
+            font-size: 20px;
+            color: #005cbf;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            color: #c82333;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<body>
+<img class="image403" th:src="@{/image/404.png}">
+<form class="info">
+    <label>Không tìm thấy trang web</label><br><br>
+    <a href="javascript:history.back();" class="click">
+        Click vào đây để quay lại <i class="fa fa-reply" aria-hidden="true"></i></a>
+</form>
+</body>
+</html>

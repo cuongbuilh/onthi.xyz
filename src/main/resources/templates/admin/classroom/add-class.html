@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Thêm lớp học</title>
+    <div th:replace="admin/init_admin :: header"></div>
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="admin/sidebar :: content"></div>
+        <div th:replace="admin/header :: content"></div>
+
+        <div class="right_col" role="main">
+            <!-- top tiles -->
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3> <small>Quản lí lớp học</small></h3>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row justify-content-md-center">
+                    <div class="col-md-12">
+                        <div class="x_title">
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="bg-danger col-md-6" id="error"
+                         th:if="${not #strings.isEmpty(error)}" th:text="${error}" style="color: white;padding: 10px">
+                    </div>
+                    <div class="col-md-6 ">
+                        <div class="p-3 py-5">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="text-right">Thêm lớp học</h4>
+                            </div>
+                            <form th:action="@{/class/add-class}" method="post" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="col-md-12 mt-2">
+                                            <label class="labels">Mã lớp học</label>
+                                            <input type="text" class="form-control" name="classCode" id="classCode">
+                                            <span id="vld-classCode" class="span-vld hide">Mã lớp học không được để trống </span>
+                                        </div>
+                                        <div class="col-md-12 mt-2">
+                                            <label class="labels">Tên lớp học</label>
+                                            <input type="text" class="form-control" name="className" id="className" >
+                                            <span id="vld-className" class="span-vld hide" >Tên lớp học không được để trống </span>
+                                        </div>
+                                        <div class="col-md-12 mt-2">
+                                            <label class="labels">Cấp bậc</label>
+                                            <select class="form-control" name="schoolId" id="schoolId">
+                                                <option value="">Tùy chọn</option>
+                                                <option th:each="item : ${listSchool}"
+                                                        th:value="${item.id}" th:text="${item.schoolname}">
+                                                </option>
+                                            </select>
+                                            <span id="vld-schoolId" class="span-vld hide" >Vui lòng chọn cấp bậc </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="col-md-12 col-sm-12">
+                                            <label class="label">Hình ảnh lớp học</label>
+                                            <input type="file" name="image" id="fileImage" style="overflow:hidden;" >
+                                        </div>
+                                        <div class="col-md-12 col-sm-12 mt-3">
+                                            <img id="imgPreview" style="width: 150px;height: 150px">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-5 text-center">
+                                    <button class="btn btn-success" type="submit" id="btnAddClass">Thêm lớp học</button>
+                                    <a th:href="@{/class/list-class}" class="btn btn-danger">Hủy bỏ</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- page content -->
+    </div>
+</div>
+<div th:replace="admin/footer :: content"></div>
+</div>
+<div th:replace="admin/init_admin :: script"></div>
+<script>
+    $('#classManager').addClass("active");
+
+</script>
+</body>
+</html>

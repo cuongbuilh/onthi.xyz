@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Admin</title>
+    <div th:replace="admin/init_admin :: header"></div>
+</head>
+
+<body class="nav-md">
+<div class="container body">
+    <div class="main_container">
+        <div th:replace="admin/sidebar :: content"></div>
+        <div th:replace="admin/header :: content"></div>
+
+        <div class="right_col" role="main">
+            <!-- top tiles -->
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3> <small>Danh sách câu hỏi</small></h3>
+                    </div>
+
+                    <div class="title_right">
+                        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Go!</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="x_title">
+                            <h5>T</h5>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div>
+                            <form th:action="@{/question/list-all-question}" method="get">
+                                <div class="row">
+                                    <div class="col-lg-2 col-sm-12 col-sm-4 col-xs-3">
+                                        <label>Môn học</label>
+                                        <select class="form-control" name="subjectId">
+                                            <option value="">Tùy chọn</option>
+                                            <option th:each="item : ${listSubject}"
+                                                    th:value="${item.id}" th:text="${item.name}"
+                                                    th:selected="${item.id==subjectSelected}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-12 col-sm-4 col-xs-3">
+                                        <label>Lớp</label>
+                                        <select class="form-control" name="classId">
+                                            <option value="">Tùy chọn</option>
+                                            <option th:each="item : ${listClass}"
+                                                    th:value="${item.id}" th:text="${item.classname}"
+                                                    th:selected="${item.id==classSelected}">
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-12 col-sm-4 col-xs-3">
+                                        <label>&nbsp;</label>
+                                        <div>
+                                            <button type="submit" id="btnSearch" class="btn btn-success">Tìm kiếm
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-12 col-sm-4 col-xs-3">
+                                        <label>&nbsp;</label>
+                                        <div>
+                                            <a th:href="@{/question/add-question}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="bg-success col-md-12" id="success"
+                             th:if="${not #strings.isEmpty(success)}" th:text="${success}" style="color: white;padding: 10px">
+                        </div>
+                        <div class="bg-success col-md-12" id="error"
+                             th:if="${not #strings.isEmpty(error)}" th:text="${error}" style="color: white;padding: 10px">
+                        </div>
+                        <div class="tile-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="sampleTable">
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Nội dung câu hỏi</th>
+                                        <th>Đáp án A</th>
+                                        <th>Đáp án B</th>
+                                        <th>Đáp án C</th>
+                                        <th>Đáp án D</th>
+                                        <th>Đáp án Đúng</th>
+                                        <th>Tùy chọn</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody th:if="${pageInfo.content != null}">
+                                    <tr th:each=" row,iterStat: ${pageInfo.content}">
+                                        <td th:text="${iterStat.count}"></td>
+                                        <td th:text="${#strings.substring(row.content,0,20)+'...'}"></td>
+                                        <td th:text="${row.ansA}"></td>
+                                        <td th:text="${row.ansB}"></td>
+                                        <td th:text="${row.ansC}"></td>
+                                        <td th:text="${row.ansD}"></td>
+                                        <td th:if="${row.ansCorrect=='1'}">A</td>
+                                        <td th:if="${row.ansCorrect=='2'}">B</td>
+                                        <td th:if="${row.ansCorrect=='3'}">C</td>
+                                        <td th:if="${row.ansCorrect=='4'}">D</td>
+                                        <td>
+                                            <a th:href="@{/question/detail-question/{questionId}(questionId=${row.id})}" title="Chi tiết"><i class="fa fa-info-circle btn btn-info" ></i></a>
+                                            <a th:href="@{/question/update-question/{questionId}(questionId=${row.id})}"><i class="fa fa-edit btn btn-success" ></i></a>
+                                            <a th:href="@{/question/delete-question/{questionId}(questionId=${row.id})}" id="confirmDelete"><i  class="fa fa-trash-o btn btn-danger"></i></a>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <div th:replace="admin/pagging::content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- page content -->
+    </div>
+</div>
+<div th:replace="admin/modal_confirm::content"></div>
+<div th:replace="admin/modal_active::content"></div>
+<div th:replace="admin/modal_disable::content"></div>
+<div th:replace="admin/footer :: content"></div>
+</div>
+<div th:replace="admin/init_admin :: script"></div>
+<script>
+    $(document).ready(function () {
+        $('#questionManager').addClass("active");
+    });
+
+</script>
+</body>
+</html>
