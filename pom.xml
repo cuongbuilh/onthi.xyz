@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.wru</groupId>
     <artifactId>ROOT</artifactId>
-    <version></version>
+    <version>0</version>
     <packaging>war</packaging>
     <name>onthi-online</name>
     <description>Project on thi online</description>
