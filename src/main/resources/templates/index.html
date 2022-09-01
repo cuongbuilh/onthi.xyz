@@ -103,7 +103,8 @@
                             <span><i class="fa fa-book" aria-hidden="true"></i> Danh sách đề thi mới</span>
                         </div>
                         <div class="news-list">
-                            <a th:href="@{/noidungbaihoc(lessonId=${item.id})}" th:each="item:${lessonList}">
+<!--                            <a th:href="@{/noidungbaihoc(lessonId=${item.id})}" th:each="item:${lessonList}">-->
+                            <a href="#!" th:each="item:${lessonList}">
                                 <div class="news-listItem">
                                     <div class="img">
                                         <img th:src="${item.image}" alt="">
@@ -152,7 +153,8 @@
                             <span><i class="fa fa-newspaper-o" ></i> Danh sách câu hỏi sai nhiều</span>
                         </div>
                         <div class="news-list">
-                            <a th:href="@{/tintuc(newsId=${item.id})}" th:each="item:${listNews}">
+<!--                            <a th:href="@{/tintuc(newsId=${item.id})}" th:each="item:${listNews}">-->
+                            <a href="#!" th:each="item:${listNews}">
                                 <div class="news-listItem">
                                     <div class="img">
                                         <img th:src="${item.image}" alt="">
