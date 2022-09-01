@@ -12,11 +12,11 @@
 <div id="logreg-forms">
     <form class="form-signin" th:action="@{/login}" method="post">
         <h3 class="mb-4" style="text-align: center"> Đăng nhập</h3>
-        <div class="social-login">
-            <button class="btn facebook-btn social-btn" type="button" ><a th:href="@{/oauth2/authorization/facebook}" ><i class="fa fa-facebook-f"></i> Đăng nhập Facebook</a> </button>
-            <button class="btn google-btn social-btn" type="button"><a th:href="@{/oauth2/authorization/google}"><i class="fa fa-google-plus-official"></i> Đăng nhập Google+</a></button>
-        </div>
-        <p style="text-align:center">  OR  </p>
+<!--        <div class="social-login">-->
+<!--            <button class="btn facebook-btn social-btn" type="button" ><a th:href="@{/oauth2/authorization/facebook}" ><i class="fa fa-facebook-f"></i> Đăng nhập Facebook</a> </button>-->
+<!--            <button class="btn google-btn social-btn" type="button"><a th:href="@{/oauth2/authorization/google}"><i class="fa fa-google-plus-official"></i> Đăng nhập Google+</a></button>-->
+<!--        </div>-->
+<!--        <p style="text-align:center">  OR  </p>-->
         <div align="center" th:if="${param.error}">
             <p style="font-size: 14px; color: #FF1C19;">Email hoặc Password không đúng.</p>
         </div>
@@ -41,12 +41,12 @@
 
     <form th:action="@{/signin}" class="form-signup" method="post">
         <h3 class="mb-4" style="text-align: center"> Đăng kí</h3>
-        <div class="social-login">
-            <button class="btn facebook-btn social-btn" type="button"><a><i class="fa fa-facebook-f"></i> Đăng kí Facebook</a> </button>
-            <button class="btn google-btn social-btn" type="button"><a><i class="fa fa-google-plus-official"></i> Đăng kí Google+</a> </button>
-        </div>
+<!--        <div class="social-login">-->
+<!--            <button class="btn facebook-btn social-btn" type="button"><a><i class="fa fa-facebook-f"></i> Đăng kí Facebook</a> </button>-->
+<!--            <button class="btn google-btn social-btn" type="button"><a><i class="fa fa-google-plus-official"></i> Đăng kí Google+</a> </button>-->
+<!--        </div>-->
 
-        <p style="text-align:center">OR</p>
+<!--        <p style="text-align:center">OR</p>-->
         <input type="text" id="user" class="form-control" placeholder="Username" name="username" required="" autofocus="">
         <input type="text" id="user-name" class="form-control" placeholder="Họ và tên" name="fullname" required="" autofocus="">
         <input type="email" id="user-email" class="form-control" placeholder="Email" name="email" required autofocus="">
