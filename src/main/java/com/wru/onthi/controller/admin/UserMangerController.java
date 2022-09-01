@@ -317,7 +317,7 @@ public class UserMangerController {
         getInfoUser(model,principal);
         User user= userService.findById(userId).get();
         try {
-            String newPass="123";
+            String newPass="123456";
             user.setPassword(encoderPass.encode(newPass));
             userService.updateUser(user);
             red.addFlashAttribute("success","Reset password thành công");
