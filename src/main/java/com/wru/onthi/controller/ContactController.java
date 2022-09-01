@@ -45,7 +45,7 @@ public class ContactController {
 
         SimpleMailMessage mailMessage= new SimpleMailMessage();
         mailMessage.setFrom("contact@luyenthi.com");
-        mailMessage.setTo("nguyendai2171998@gmail.com");
+        mailMessage.setTo("cuongbuilh@gmail.com");
         String mailSubject= fullname +"Gửi phản hồi";
         String mailContent= "Email người gửi: "+ email+ "\n" +"Số điện thoại :" +phone+"\n";
         mailContent += "Nội dung: "+ content +"\n";

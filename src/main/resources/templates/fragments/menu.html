@@ -11,12 +11,13 @@
                             <a href="#">Chủ đề</a>
                             <ul>
                                 <li th:each="item:${listClass}">
-                                    <a th:href="@{'/monhoc?class_id=' +${item.id}}" th:text="${item.classname}"></a>
+<!--                                    <a th:href="@{'/monhoc?class_id=' +${item.id}}" th:text="${item.classname}"></a>-->
+                                    <a href="#!" th:text="${item.classname}"></a>
                                 </li>
                             </ul>
                         </li>
-                        <li><a th:href="@{/kiemtra/list-class}">Thi cử</a></li>
-                        <li><a th:href="@{/tintuc/list-news}">Tạo đề</a></li>
+                        <li><a href="#!">Thi cử</a></li>
+                        <li><a href="#!">Tạo đề</a></li>
                         <li><a th:href="@{/contact}">Liên hệ</a></li>
                     </ul>
                 </div>
@@ -65,8 +66,8 @@
                         </li>
                     </ul>
                 </li>
-                <li><a th:href="@{/kiemtra/list-class}">Thi cử</a></li>
-                <li><a th:href="@{/tintuc/list-news}">Tạo đề</a></li>
+                <li><a href="#!">Thi cử</a></li>
+                <li><a href="#!">Tạo đề</a></li>
                 <li><a th:href="@{/contact}">Liên hệ</a></li>
                 <li hasSubMenu="true">
                     <a href="#"><i class="fa fa-user"></i>Đăng nhập</a>
