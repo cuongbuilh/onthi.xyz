@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Danh sách tin tức</title>
+    <title>Danh sách độ khó</title>
     <div th:replace="admin/init_admin :: header"></div>
 </head>
 
@@ -16,7 +16,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3> <small>Danh sách tin tức</small></h3>
+                        <h3> <small>Danh sách độ khó</small></h3>
                     </div>
 
                     <div class="title_right">
@@ -40,37 +40,25 @@
                             <div class="clearfix"></div>
                         </div>
                         <div>
-                            <form th:action="@{/news/list-news}" method="get">
+                            <form th:action="@{/class/list-class}" method="get">
                                 <div class="row">
-                                    <div class="col-lg-4 col-sm-12 col-sm-4 col-xs-3">
-                                        <label>Tiêu đề</label>
+                                    <div class="col-md-2 col-sm-12">
+                                        <label>Mã / tên </label>
                                         <div>
-                                            <input class="form-control" name="title" type="text">
+                                            <input class="form-control" name="searchClass" type="text" th:text="${cl}">
                                         </div>
                                     </div>
-                                    <div class="col-lg-2 col-sm-12 col-sm-4 col-xs-3">
-                                        <label>Thể loại</label>
-                                        <select class="form-control" name="categoryId">
-                                            <option value="">Tùy chọn</option>
-                                            <option th:each="item : ${listCategory}"
-                                                    th:value="${item.id}" th:text="${item.categoryName}"
-                                                    th:selected="${item.id==categorySelected}">
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <div class="col-lg-2 col-sm-12 col-sm-4 col-xs-3">
+                                    <div class="col-md-2 col-sm-12 ">
                                         <label>&nbsp;</label>
                                         <div>
-                                            <button type="submit" id="btnSearch" class="btn btn-success">Tìm kiếm
-                                            </button>
+                                            <button type="submit" class="btn btn-success">Tìm kiếm</button>
                                         </div>
                                     </div>
-                                    <div class="col-lg-2 col-sm-12 col-sm-4 col-xs-3">
-                                    </div>
-                                    <div class="col-lg-2 col-sm-12 col-sm-4 col-xs-3">
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-2 col-sm-12">
                                         <label>&nbsp;</label>
                                         <div>
-                                            <a th:href="@{/news/add-news}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
+                                            <a th:href="@{/class/add-class}" class="btn btn-success"><i class="fa fa-plus"></i> Thêm mới</a>
                                         </div>
                                     </div>
                                 </div>
@@ -85,50 +73,48 @@
                         <div class="bg-success col-md-12" id="success"
                              th:if="${not #strings.isEmpty(success)}" th:text="${success}" style="color: white;padding: 10px">
                         </div>
+                        <div class="bg-danger col-md-12" id="error"
+                             th:if="${not #strings.isEmpty(error)}" th:text="${error}" style="color: white;padding: 10px">
+                        </div>
                         <div class="tile-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="sampleTable">
                                     <thead>
                                     <tr>
                                         <th>STT</th>
-                                        <th>Ảnh</th>
-                                        <th>Tiêu đề</th>
-                                        <th>Thể loại</th>
-                                        <th>Thời gian</th>
-                                        <th>Views</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Mã độ khó</th>
+                                        <th>Tên độ khó</th>
                                         <th>Trạng thái</th>
-                                        <th>Tùy chọn</th>
+                                        <th>Tuỳ chọn</th>
                                     </tr>
                                     </thead>
                                     <tbody th:if="${pageInfo.content != null}">
                                     <tr th:each=" row,iterStat: ${pageInfo.content}">
                                         <td th:text="${iterStat.count}"></td>
-                                        <td><img id="img-news" th:src="${row.image}"></td>
-                                        <td th:text="${#strings.substring(row.title,0,20)+'...'}"></td>
-                                        <td th:text="${row.categoryNews.categoryName}"></td>
-                                        <td th:text="${#dates.format(row.insertDate, 'dd/MM/yyyy')}"></td>
-                                        <td th:text="${row.views}"></td>
+                                        <td><img style="height: 50px;width: 50px" th:src="${row.image}"></td>
+                                        <td th:text="${row.code}"></td>
+                                        <td th:text="${row.classname}"></td>
                                         <td th:if="${row.status==1}">
-                                            <a th:href="@{/news/update-new-status(id=${row.id},status=${row.status})}"  id="confirmDisable" class="btn btn-success" title="Active"><i class="fa fa-check"></i></a>
+                                            <a th:href="@{/class/update-status(classId=${row.id},status= ${row.status})}" id="confirmDisable" class="btn btn-success" title="Active">Active</a>
                                         </td>
                                         <td th:if="${row.status==0}">
-                                            <a th:href="@{/news/update-new-status(id=${row.id},status=${row.status})}"  id="confirmActive" class="btn btn-secondary" title="Disable"><i class="fa fa-times"></i></a>
+                                            <a th:href="@{/class/update-status(classId=${row.id},status= ${row.status})}" id="confirmActive" class="btn btn-secondary" title="Disable">Disable</a>
                                         </td>
                                         <td>
-
+<!--                                            <i class="fa fa-share"></i>-->
+<!--                                            <a th:href="@{/class/update-class/{id}(id=${row.id})}" class="btn btn-success" title="Chỉnh Sửa"><i class="fa fa-edit" ></i></a>-->
+<!--                                            <a th:href="@{/class/delete-class(classId=${row.id},status= ${row.status})}" class="btn btn-danger" id="confirmDelete" title="Xóa" ><i class="fa fa-trash-o"></i></a>
+-->
                                             <div class="dropdown">
                                                 <button class="btn btn-success dropdown-toggle"
                                                         type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fa fa-cog"></i>
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
+                                                    <a class="dropdown-item" th:href="@{/class/update-class/{id}(id=${row.id})}"><i class="fa fa-edit" ></i> Cập nhật</a>
                                                     <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" th:href="@{/news/detail-news/{id}(id=${row.id})}" ><i class="fa fa-info-circle"></i> Chi tiết</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" th:href="@{/news/update-news/{id}(id=${row.id})}"><i class="fa fa-edit" ></i> Cập nhật</a>
-                                                    <div class="dropdown-divider"></div>
-                                                    <a class="dropdown-item" th:href="@{/news/delete-news(id=${row.id},status=${row.status})}" id="confirmDelete"> <i class="fa fa-trash-o"></i> Xóa</a>
+                                                    <a class="dropdown-item" th:href="@{/class/delete-class(classId=${row.id},status= ${row.status})}" id="confirmDelete"> <i class="fa fa-trash-o"></i> Xóa</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -153,10 +139,7 @@
 </div>
 <div th:replace="admin/init_admin :: script"></div>
 <script>
-    $(document).ready(function () {
-        $('#newsManager').addClass("active");
-    });
-
+    $("#classManager a").addClass("active");
 </script>
 </body>
 </html>

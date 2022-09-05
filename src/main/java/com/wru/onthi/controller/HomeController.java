@@ -53,7 +53,12 @@ public class HomeController {
         model.addAttribute("listClassTHPT",listClassTHPT);
 
         // get list-exam
-        List<Exam> listExam= examService.getListExamOrderByViews().subList(0,3);
+        List<Exam> listNewExam = examService.getListExamOrderByViews();
+        if(!listNewExam.isEmpty()){
+            model.addAttribute("listNewExam",listNewExam.size()>5 ? listNewExam.subList(0,5) : listNewExam);
+        }
+
+        List<Exam> listExam= listNewExam.subList(0,3);
         if(!listExam.isEmpty()){
             model.addAttribute("listExam",listExam);
         }
@@ -70,7 +75,8 @@ public class HomeController {
         List<News> listnewStudy= newsService.getNewsStudy().subList(0,4) ;
         model.addAttribute("listnewStudy",listnewStudy);
 
-        List<Result> listScoreDesc= resultService.getResultScoreDESC().subList(0,5);
+        List<Result> listScore = resultService.getResultScoreDESC();
+        List<Result> listScoreDesc= listScore.size() > 5 ? listScore.subList(0,5) : listScore;
         model.addAttribute("userScore",listScoreDesc);
 
         return "index";

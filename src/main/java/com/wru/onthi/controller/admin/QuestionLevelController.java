@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-public class ClassManagerController {
+public class QuestionLevelController {
 
     @Autowired
     UserService userService;
@@ -47,7 +47,7 @@ public class ClassManagerController {
     @Value("${folder.upload}")
     String foldeUpload;
 
-    @GetMapping("/class/list-class")
+    @GetMapping("/question-level/list-level")
     public String listClass(Model model, Principal principal, Pageable pageable,String searchClass){
        getInfoUser(model,principal);
 
@@ -70,19 +70,19 @@ public class ClassManagerController {
         model.addAttribute("total",totalItem);
         model.addAttribute("itemPerPage",itemPerPage);
         model.addAttribute("path","/class/list-class");
-       return "admin/classroom/list-class";
+       return "admin/question-level/list-level";
     }
 
-    @GetMapping("/class/add-class")
+    @GetMapping("/question-level/add-level")
     public String addClass(Model model, Principal principal){
         getInfoUser(model,principal);
 
         List<School> listSchool= schoolService.getListSchool();
         model.addAttribute("listSchool",listSchool);
-        return "admin/classroom/add-class";
+        return "admin/question-level/add-level";
     }
 
-    @PostMapping("/class/add-class")
+    @PostMapping("/question-level/add-level")
     public String addSubjectPost(Model model, Principal principal, RedirectAttributes redir,
                                  @RequestParam("classCode") String classcode,
                                  @RequestParam("className") String classname,
@@ -108,19 +108,19 @@ public class ClassManagerController {
                 }
             }
         }
-        return "redirect:/class/list-class";
+        return "redirect:/question-level/list-level";
     }
 
-    @GetMapping("/class/update-class/{id}")
+    @GetMapping("/question-level/update-level/{id}")
     public String updateGet(Model model, Principal principal, @PathVariable("id") Integer id){
         getInfoUser(model,principal);
         Optional<Classroom> optional= classroomService.findById(id);
         Classroom classroom = optional.get();
         model.addAttribute("cl",classroom);
-        return "admin/classroom/update-class";
+        return "admin/question-level/update-level";
     }
 
-    @PostMapping("/class/update-class")
+    @PostMapping("/question-level/update-level")
     public String updateClassroomPost(Model model, Principal principal, RedirectAttributes redir,
                                     @RequestParam(value = "idClass") Integer id,
                                     @RequestParam(value = "classCode") String code,
@@ -146,18 +146,18 @@ public class ClassManagerController {
                     UploadImage(multipartFile,fileImage);
                 }
                 redir.addFlashAttribute("success","Cập nhật lớp học thành công");
-                return "redirect:/class/list-class";
+                return "redirect:/question-level/list-level";
             }catch (Exception e){
                 model.addAttribute("error","Cập nhật lớp học thất bại");
                 model.addAttribute("cl",classroom);
-                return "admin/classroom/update-class";
+                return "admin/question-level/update-class";
             }
         }else {
-            return "admin/classroom/update-class";
+            return "admin/question-level/update-class";
         }
     }
 
-    @GetMapping("/class/delete-class")
+    @GetMapping("/question-level/delete-level")
     public String deleteClass(Model model, Principal principal,RedirectAttributes redr,
                                 @RequestParam("classId") Integer id,
                                 @RequestParam("status") Integer status) {
@@ -174,10 +174,10 @@ public class ClassManagerController {
         }catch (Exception e){
             redr.addFlashAttribute("error","Xóa lớp học thất bại");
         }
-        return "redirect:/class/list-class";
+        return "redirect:/question-level/list-class";
     }
 
-    @GetMapping("class/update-status")
+    @GetMapping("question-level/update-status")
     public String updateStatus(Model model,Principal principal,
                                @RequestParam("classId") Integer classId,
                                @RequestParam("status") Integer status,
@@ -193,7 +193,7 @@ public class ClassManagerController {
         }catch (Exception e){
             redir.addFlashAttribute("error","Update trạng thái thất bại");
         }
-        return "redirect:/class/list-class";
+        return "redirect:/question-level/list-level";
     }
 
     // get info user login

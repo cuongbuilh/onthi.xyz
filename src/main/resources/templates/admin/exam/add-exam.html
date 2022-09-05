@@ -57,16 +57,7 @@
                                         </select>
                                         <span id="vld-subjectId" class="span-vld hide">Vui lòng chọn môn học.</span>
                                     </div>
-                                    <div class="col-md-6 col-sm-12">
-                                        <label>Lớp</label>
-                                        <select class="form-control" name="classId" id="classId">
-                                            <option value="">Tùy chọn</option>
-                                            <option th:each="item : ${listClass}"
-                                                    th:value="${item.id}" th:text="${item.classname}">
-                                            </option>
-                                        </select>
-                                        <span id="vld-classId" class="span-vld hide">Vui lòng chọn lớp học.</span>
-                                    </div>
+
                                 </div>
                                 <div class="row mt-2">
                                     <div class="col-md-6 col-sm-12">

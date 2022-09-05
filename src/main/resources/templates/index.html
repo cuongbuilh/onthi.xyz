@@ -3,7 +3,7 @@
 <head>
     <title>Home</title>
     <div th:replace="fragments/init_lib :: header"></div>
-    <script th:src="@{https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 
 <body>
@@ -70,24 +70,6 @@
 
         </div>
 
-        <!-- test -->
-<!--        <section class="test">-->
-<!--            <div class="section-header">-->
-<!--                <h2 class="section-title">Kiểm tra</h2>-->
-<!--                <div class="section-img">-->
-<!--                    <img th:src="@{/image/test.png}" alt="">-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div class="test-slider">-->
-<!--                <div class="test-sliderItem" th:each="item:${listSubject}">-->
-<!--                    <div class="subject" >-->
-<!--                        <a th:href="@{/lophoc/list-class(subjectId=${item.id})}">-->
-<!--                            <img th:src="${item.image}" >-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
         <!-- news -->
         <section class="news">
             <div class="section-header">
@@ -103,18 +85,17 @@
                             <span><i class="fa fa-book" aria-hidden="true"></i> Danh sách đề thi mới</span>
                         </div>
                         <div class="news-list">
-<!--                            <a th:href="@{/noidungbaihoc(lessonId=${item.id})}" th:each="item:${lessonList}">-->
-                            <a href="#!" th:each="item:${lessonList}">
+                            <a href="#!" th:each="item:${listNewExam}">
                                 <div class="news-listItem">
                                     <div class="img">
-                                        <img th:src="${item.image}" alt="">
+                                        <img th:src="${item.getExam_subject().image}" alt="">
                                     </div>
                                     <div class="content">
                                         <h3 class="title">
-                                            Môn học: <span th:text="${item.getSubject().name}"></span>
+                                            Môn học: <span th:text="${item.getExam_subject().name}"></span>
                                         </h3>
                                         <span class="description">
-                                           Nội dung : <span th:text="${item.lessonName}"></span>
+                                           <i class="fa fa-clock-o" ></i> Thời gian: <span th:text="${item.timeOut} +' phút'"> </span>
                                         </span>
                                     </div>
                                 </div>
