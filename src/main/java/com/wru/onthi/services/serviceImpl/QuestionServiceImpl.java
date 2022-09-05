@@ -111,4 +111,9 @@ public class QuestionServiceImpl implements QuestionService {
     public long countQuestion() {
         return questionRepository.count();
     }
+
+    @Override
+    public List<Question> getTopQuestion() {
+        return questionRepository.findTop();
+    }
 }

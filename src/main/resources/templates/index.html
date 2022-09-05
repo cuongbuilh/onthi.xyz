@@ -85,7 +85,7 @@
                             <span><i class="fa fa-book" aria-hidden="true"></i> Danh sách đề thi mới</span>
                         </div>
                         <div class="news-list">
-                            <a href="#!" th:each="item:${listNewExam}">
+                            <a th:href="@{/kiemtra/info(examId=${item.id})}" th:each="item:${listNewExam}">
                                 <div class="news-listItem">
                                     <div class="img">
                                         <img th:src="${item.getExam_subject().image}" alt="">
@@ -134,17 +134,17 @@
                             <span><i class="fa fa-newspaper-o" ></i> Danh sách câu hỏi sai nhiều</span>
                         </div>
                         <div class="news-list">
-<!--                            <a th:href="@{/tintuc(newsId=${item.id})}" th:each="item:${listNews}">-->
-                            <a href="#!" th:each="item:${listNews}">
+                            <a href="#!" th:each="item:${listTopQuestion}">
                                 <div class="news-listItem">
                                     <div class="img">
-                                        <img th:src="${item.image}" alt="">
+                                        <img th:src="${item.question_subject.image}" alt="">
                                     </div>
                                     <div class="content">
-                                        <h4 class="title" th:text="${item.title}">
-                                        </h4>
+                                        <h5 class="title" style="font-size: 100%">
+                                            Môn học: <span th:text="${item.question_subject.name}"></span>
+                                        </h5>
                                         <span class="description">
-                                            <i class="fa fa-angle-double-right"></i>Thời gian:<span th:text="${#dates.format(item.insertDate, 'dd/MM/yyy HH:mm')}"></span>
+                                           <span th:text="${item.content}"></span>
                                         </span>
                                     </div>
                                 </div>

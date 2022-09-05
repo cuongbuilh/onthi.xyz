@@ -31,6 +31,9 @@ public class HomeController {
     @Autowired
     ResultService resultService;
 
+    @Autowired
+    QuestionService questionService;
+
     @GetMapping(value = {"/"})
     public String index(Model model){
 
@@ -78,6 +81,9 @@ public class HomeController {
         List<Result> listScore = resultService.getResultScoreDESC();
         List<Result> listScoreDesc= listScore.size() > 5 ? listScore.subList(0,5) : listScore;
         model.addAttribute("userScore",listScoreDesc);
+
+        List<Question> listTopQuestion = questionService.getTopQuestion();
+        model.addAttribute("listTopQuestion", listTopQuestion.size() >5? listTopQuestion.subList(0,5) : listTopQuestion);
 
         return "index";
     }

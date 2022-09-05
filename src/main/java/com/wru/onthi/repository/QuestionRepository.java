@@ -10,22 +10,22 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface QuestionRepository extends JpaRepository<Question,Integer> {
+public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
-    @Query(value = "select * from question where exam_id=?1 ",nativeQuery = true)
+    @Query(value = "select * from question where exam_id=?1 ", nativeQuery = true)
     List<Question> getListQuestionByExamId(Integer examId);
 
     @Query(value = "select qs  from Question qs " +
             "join ExamQuestion eq on qs.id= eq.questionExam.id " +
-            "join Exam ex on ex.id= eq.examQuestion.id "+
+            "join Exam ex on ex.id= eq.examQuestion.id " +
             "and ex.id=?1")
     Page<Question> getPageQuestionByExamId(Integer examId, Pageable pageable);
 
     @Query(value = "select qs  from Question qs " +
             "join ExamQuestion eq on qs.id= eq.questionExam.id " +
-            "join Exam ex on ex.id= eq.examQuestion.id "+
+            "join Exam ex on ex.id= eq.examQuestion.id " +
             "and ex.id=?1")
-    Page<Question> getPageQuestionByClassAndSubject(Integer classId,Integer subjectId, Pageable pageable);
+    Page<Question> getPageQuestionByClassAndSubject(Integer classId, Integer subjectId, Pageable pageable);
 
 
     @Query(value = "select q from Question q " +
@@ -37,4 +37,7 @@ public interface QuestionRepository extends JpaRepository<Question,Integer> {
             "where q.question_subject.id= ?1 " +
             "and q.question_classroom.id= ?2")
     List<Question> getListQuestionBySubjectAndClass(Integer subjectId, Integer classId);
+
+    @Query(value = "select distinct  q from Question q order by q.id desc ")
+    List<Question> findTop();
 }
