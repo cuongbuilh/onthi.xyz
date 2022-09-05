@@ -1,5 +1,5 @@
 body{
-    background: url("../image/background_login.jpg")  no-repeat center center fixed;
+    background: url("../image/background_login_2.jpg")  no-repeat center center fixed;
     -moz-background-size: cover;
     -webkit-background-size: cover;
     -o-background-size: cover;
@@ -129,13 +129,6 @@ a{
     }
     #logreg-forms .social-btn span{
         display: none;
-    }
-    #logreg-forms  .facebook-btn:after{
-        content:'Facebook';
-    }
-
-    #logreg-forms  .google-btn:after{
-        content:'Google+';
     }
     .logo-login{
         width: 145px;
