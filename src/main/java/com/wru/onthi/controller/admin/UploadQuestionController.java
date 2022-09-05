@@ -5,7 +5,7 @@ import com.wru.onthi.entity.Classroom;
 import com.wru.onthi.entity.Question;
 import com.wru.onthi.entity.Subject;
 import com.wru.onthi.entity.User;
-import com.wru.onthi.services.ClassroomService;
+import com.wru.onthi.services.QuestionLevelService;
 import com.wru.onthi.services.QuestionService;
 import com.wru.onthi.services.SubjectService;
 import com.wru.onthi.services.UserService;
@@ -41,7 +41,7 @@ public class UploadQuestionController {
     QuestionService questionService;
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @Autowired
     SubjectService subjectService;

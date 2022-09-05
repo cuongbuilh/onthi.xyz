@@ -4,7 +4,7 @@ import com.wru.onthi.entity.Classroom;
 import com.wru.onthi.entity.Lesson;
 import com.wru.onthi.entity.Subject;
 import com.wru.onthi.entity.User;
-import com.wru.onthi.services.ClassroomService;
+import com.wru.onthi.services.QuestionLevelService;
 import com.wru.onthi.services.LessonService;
 import com.wru.onthi.services.SubjectService;
 import com.wru.onthi.services.UserService;
@@ -37,7 +37,7 @@ public class LessonControllerAdmin {
     @Autowired
     LessonService lessonService;
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @Autowired
     SubjectService subjectService;

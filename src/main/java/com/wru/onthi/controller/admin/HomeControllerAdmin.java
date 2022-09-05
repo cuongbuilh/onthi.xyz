@@ -37,7 +37,7 @@ public class HomeControllerAdmin {
     SubjectService subjectService;
 
     @Autowired
-    LessonService lessonService;
+    QuestionLevelService classroomService;
 
     @Autowired
     NewsService newsService;
@@ -68,7 +68,7 @@ public class HomeControllerAdmin {
         Long totalSubject= subjectService.countSubject();
         Long totalResult= resultService.countResult();
         Long totalNews= newsService.countNews();
-        Long totalLesson = lessonService.countLesson();
+        Long totalLesson = classroomService.count();
         Long totalQuestion= questionService.countQuestion();
 
 

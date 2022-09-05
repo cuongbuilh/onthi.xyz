@@ -22,7 +22,7 @@ public class LessonController {
     LessonService lessonService;
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @Autowired
     ExamService examService;

@@ -4,7 +4,7 @@ import com.wru.onthi.entity.Classroom;
 import com.wru.onthi.entity.Exam;
 import com.wru.onthi.entity.Subject;
 import com.wru.onthi.entity.User;
-import com.wru.onthi.services.ClassroomService;
+import com.wru.onthi.services.QuestionLevelService;
 import com.wru.onthi.services.ExamService;
 import com.wru.onthi.services.SubjectService;
 import com.wru.onthi.services.UserService;
@@ -38,7 +38,7 @@ public class ExamControllerAdmin {
     SubjectService subjectService;
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @GetMapping("/list-exam")
     public String getListExam(Model model, Principal principal,Pageable pageable,String codeExam ,String subjectId,String classId){

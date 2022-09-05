@@ -4,7 +4,7 @@ import com.google.common.base.Strings;
 import com.wru.onthi.controller.admin.UploadImageController;
 import com.wru.onthi.entity.Classroom;
 import com.wru.onthi.entity.User;
-import com.wru.onthi.services.ClassroomService;
+import com.wru.onthi.services.QuestionLevelService;
 import com.wru.onthi.services.ResultService;
 import com.wru.onthi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ import java.util.Optional;
 public class ProfileController {
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @Autowired
     UserService userService;

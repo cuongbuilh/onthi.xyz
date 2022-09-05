@@ -1,7 +1,7 @@
 package com.wru.onthi.controller;
 
 import com.wru.onthi.entity.Classroom;
-import com.wru.onthi.services.ClassroomService;
+import com.wru.onthi.services.QuestionLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,7 +20,7 @@ public class ContactController {
     private JavaMailSender mailSender;
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @GetMapping("/contact")
     public String contact(Model model, Principal principal){

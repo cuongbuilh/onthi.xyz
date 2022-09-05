@@ -4,7 +4,7 @@ import com.wru.onthi.entity.Classroom;
 import com.wru.onthi.entity.Exam;
 import com.wru.onthi.entity.Lesson;
 import com.wru.onthi.entity.News;
-import com.wru.onthi.services.ClassroomService;
+import com.wru.onthi.services.QuestionLevelService;
 import com.wru.onthi.services.ExamService;
 import com.wru.onthi.services.LessonService;
 import com.wru.onthi.services.NewsService;
@@ -20,7 +20,7 @@ import java.util.List;
 public class ClassroomController {
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @Autowired
     LessonService lessonService;

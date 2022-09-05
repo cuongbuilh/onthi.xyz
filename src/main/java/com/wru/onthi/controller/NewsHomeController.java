@@ -4,7 +4,7 @@ import com.wru.onthi.entity.CategoryNews;
 import com.wru.onthi.entity.Classroom;
 import com.wru.onthi.entity.News;
 import com.wru.onthi.services.CategoryNewsService;
-import com.wru.onthi.services.ClassroomService;
+import com.wru.onthi.services.QuestionLevelService;
 import com.wru.onthi.services.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,7 +27,7 @@ public class NewsHomeController {
     @Autowired
     NewsService newsService;
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
     @Autowired
     CategoryNewsService categoryNewsService;
 

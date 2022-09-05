@@ -25,7 +25,7 @@ import java.util.Optional;
 public class ExamController {
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @Autowired
     ExamService examService;

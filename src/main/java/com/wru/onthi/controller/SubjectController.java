@@ -15,7 +15,7 @@ import java.util.Optional;
 public class SubjectController {
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @Autowired
     SubjectService subjectService;

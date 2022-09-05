@@ -2,7 +2,7 @@ package com.wru.onthi.services.serviceImpl;
 
 import com.wru.onthi.entity.Classroom;
 import com.wru.onthi.repository.ClassRoomRepository;
-import com.wru.onthi.services.ClassroomService;
+import com.wru.onthi.services.QuestionLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ClassroomServiceImpl implements ClassroomService {
+public class QuestionLevelServiceImpl implements QuestionLevelService {
 
     @Autowired
     ClassRoomRepository classRoomRepository;
@@ -82,5 +82,9 @@ public class ClassroomServiceImpl implements ClassroomService {
         classRoomRepository.updateStatus(classId,status);
     }
 
+    @Override
+    public Long count() {
+        return classRoomRepository.count();
+    }
 
 }

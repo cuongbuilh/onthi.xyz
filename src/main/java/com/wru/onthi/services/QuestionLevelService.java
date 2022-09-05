@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-public interface ClassroomService {
+public interface QuestionLevelService {
     void createClass(Classroom classroom);
     Classroom updateClass(Classroom classroom);
     void disableClass(Integer classId);
@@ -21,4 +21,6 @@ public interface ClassroomService {
     Page<Classroom> searchClass(String keyword,Pageable pageable);
     List<Classroom> listClassBySubject(Integer subjectId);
     void updateStatus(Integer classId, Integer status);
+
+    Long count();
 }

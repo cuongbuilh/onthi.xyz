@@ -4,7 +4,7 @@ import com.google.common.base.Strings;
 import com.wru.onthi.entity.Classroom;
 import com.wru.onthi.entity.School;
 import com.wru.onthi.entity.User;
-import com.wru.onthi.services.ClassroomService;
+import com.wru.onthi.services.QuestionLevelService;
 import com.wru.onthi.services.SchoolService;
 import com.wru.onthi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class QuestionLevelController {
     UserService userService;
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @Autowired
     SchoolService schoolService;

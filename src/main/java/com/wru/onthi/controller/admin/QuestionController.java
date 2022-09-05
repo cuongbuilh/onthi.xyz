@@ -41,7 +41,7 @@ public class QuestionController {
     QuestionService questionService;
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @Autowired
     SubjectService subjectService;

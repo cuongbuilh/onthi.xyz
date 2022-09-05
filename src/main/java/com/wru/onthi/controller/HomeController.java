@@ -14,7 +14,7 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
-    ClassroomService classroomService;
+    QuestionLevelService classroomService;
 
     @Autowired
     LessonService lessonService;
